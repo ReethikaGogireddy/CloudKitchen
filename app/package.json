@@ -1,0 +1,12 @@
+{
+  "name": "approuter",
+  "engines": {
+    "node": "^18.18.0"
+  },
+  "scripts": {
+    "start": " node node_modules/@sap/approuter/approuter.js"
+  },
+  "dependencies": {
+    "@sap/approuter": "^16.4.2"
+  }
+}
