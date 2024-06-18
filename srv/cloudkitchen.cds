@@ -1,4 +1,5 @@
 using { com.restaurant.cloudkitchen as KitchenDB } from '../db/schema';
+using {API_PRODUCT_SRV as productapi} from './external/API_PRODUCT_SRV';
 
 
 service CloudKitchen @(requires: 'authenticated-user'){
@@ -7,6 +8,12 @@ service CloudKitchen @(requires: 'authenticated-user'){
         {grant:['WRITE'],to:'CloudKitchenWrite'},
         {grant:['DELETE'],to:'CloudKitchenDelete'}
     ]) as projection on KitchenDB.Kitchen;
+    entity Products as projection on productapi.A_Product{
+        Product,
+        ProductType,
+        ProductGroup,
+        Division
+    }
     }
 
 annotate CloudKitchen.Kitchen with @odata.draft.enabled;

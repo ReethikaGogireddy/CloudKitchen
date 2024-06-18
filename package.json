@@ -7,6 +7,8 @@
   "private": true,
   "dependencies": {
     "@cap-js/postgres": "^1.8.0",
+    "@sap-cloud-sdk/http-client": "^3.15.0",
+    "@sap-cloud-sdk/resilience": "^3.15.0",
     "@sap/cds": "^7",
     "@sap/generator-fiori": "^1.13.5",
     "@sap/xssec": "^3",
@@ -47,7 +49,15 @@
       },
       "API_PRODUCT_SRV": {
         "kind": "odata-v2",
-        "model": "srv/external/API_PRODUCT_SRV"
+        "model": "srv/external/API_PRODUCT_SRV",
+        "csrf": true,
+        "csrfInBatch": true,
+        "[production]": {
+          "credentials": {
+            "destination": "S4HANA",
+            "path": "/sap/opu/odata/sap/API_PRODUCT_SRV"
+          }
+        }
       }
     }
   },
