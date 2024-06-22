@@ -12,7 +12,9 @@ service CloudKitchen @(requires: 'authenticated-user'){
         Product,
         ProductType,
         ProductGroup,
-        Division
+        Division,
+        to_Description,
+        null as ProductDescription: String(80)
     }
     }
 
