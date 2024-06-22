@@ -13,12 +13,15 @@ service CloudKitchen @(requires: 'authenticated-user'){
         ProductType,
         ProductGroup,
         Division,
-        to_Description,
-        null as ProductDescription: String(80)
+        to_Description
     }
+    entity ProductLocal as projection on KitchenDB.ProductLocal;
+
     }
 
 annotate CloudKitchen.Kitchen with @odata.draft.enabled;
+annotate CloudKitchen.ProductLocal with @odata.draft.enabled;
+
 
 annotate CloudKitchen.Kitchen with @(
     UI.LineItem:[
@@ -75,6 +78,55 @@ annotate CloudKitchen.Kitchen with @(
 
 );
 
+
+annotate CloudKitchen.ProductLocal with @(
+    UI.LineItem:[
+        {
+            Value: Product
+        },
+        {
+            Value: ProductType
+        },
+        {
+            Value: ProductGroup
+        },
+        {
+            Value: Division
+        },
+        {
+            Value: ProductDescription
+        },
+    ],
+     UI.FieldGroup #ProductLocal : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+       {
+            Value: Product
+        },
+        {
+            Value: ProductType
+        },
+        {
+            Value: ProductGroup
+        },
+        {
+            Value: Division
+        },
+        {
+            Value: ProductDescription
+        },
+        ],
+    },
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'KitchensFacet',
+            Label : 'CloudKitchen',
+            Target : '@UI.FieldGroup#ProductLocal',
+        },
+    ],
+
+);
 
 
 

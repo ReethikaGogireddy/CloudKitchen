@@ -17,6 +17,14 @@ entity Kitchen:cuid,managed
  pin_code : String(10);
 }
 
+entity ProductLocal:managed{
+    key Product: String(40);
+    ProductType: String(4);
+    ProductGroup: String(18);
+    Division:String(2);
+    ProductDescription:String(40);
+}
+
 
 
 
