@@ -18,10 +18,15 @@ entity Kitchen:cuid,managed
 }
 
 entity ProductLocal:managed{
+    @title : 'Product'
     key Product: String(40);
+    @title : 'Product Type'
     ProductType: String(4);
+    @title : 'Product Group'
     ProductGroup: String(18);
+    @title : 'Division'
     Division:String(2);
+    @title : 'Product Decription'
     ProductDescription:String(40);
 }
 

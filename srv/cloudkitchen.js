@@ -27,9 +27,10 @@ module.exports = cds.service.impl(async function () {
     return res;
   });
 
-  this.before("READ", "ProductLocal", async (req) => {
+  this.before("READ", "ProductLocal", async (req, res) => {
     const { Products, ProductLocal } = this.entities;
-    query = SELECT.from(Products)
+    console.log("fired read");
+    let query = SELECT.from(Products)
       .columns([
         { ref: ["Product"] },
         { ref: ["ProductType"] },
@@ -37,8 +38,8 @@ module.exports = cds.service.impl(async function () {
         { ref: ["Division"] },
         { ref: ["to_Description"], expand: ["*"] },
       ])
-      .limit(1000);
-    let res = await productapi.run(query);
+      .limit(10);
+    res = await productapi.run(query);
     res.forEach((element) => {
       element.to_Description.forEach((item) => {
         if ((item.Language = "EN")) {
@@ -49,5 +50,35 @@ module.exports = cds.service.impl(async function () {
     });
     insquery = UPSERT.into(ProductLocal).entries(res);
     await cds.run(insquery);
+  });
+
+  // this.before("UPDATE", "ProductLocal", async (req, res) => {
+  //   const { Products, ProductLocal, ProductDescription } = this.entities;
+  //   //console.log(req.data);
+  //   //console.log("update fired");
+  //   // req.data.to_Description = [
+  //   //   {
+  //   //     Language: "EN",
+  //   //     ProductDescription: req.data.ProductDescription,
+  //   //     Product: req.data.Product,
+  //   //   },
+  //   // ];
+  //   updatequery = UPDATE(ProductDescription)
+  //     .data({ Productdescription: req.data.Productdescription })
+  //     .where({ Product: req.data.Product, Language: "EN" });
+  //   await productapi.run(updatequery);
+  // });
+
+  this.before("UPDATE", "ProductLocal", async (req) => {
+    const { Products, ProductLocal, ProductDescription } = this.entities;
+    console.log(req.data);
+    console.log("Fired Update");
+
+    //delete(req.data.ProductDescription);
+    console.log(req.data);
+    updqry = UPDATE(ProductDescription)
+      .data({ ProductDescription: req.data.ProductDescription })
+      .where({ Product: req.data.Product, Language: "EN" });
+    await productapi.run(updqry);
   });
 });
