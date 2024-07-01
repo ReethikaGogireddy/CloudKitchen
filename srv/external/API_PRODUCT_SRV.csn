@@ -1,6 +1,6 @@
 {
  "meta": {
-  "creator": "cds-dk 7.5.1"
+  "creator": "cds-dk 7.9.4"
  },
  "$version": "2.0",
  "definitions": {
@@ -154,9 +154,9 @@
     },
     "BaseUnit": {
      "type": "cds.String",
-     "length": 3,
-     "@sap.label": "Base Unit of Measure",
-     "@sap.semantics": "unit-of-measure"
+     "length": 2,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "BaseUnit"
     },
     "ItemCategoryGroup": {
      "type": "cds.String",
@@ -170,12 +170,6 @@
      "length": 18,
      "@sap.display.format": "UpperCase",
      "@sap.label": "Product Hierarchy"
-    },
-    "Division": {
-     "type": "cds.String",
-     "length": 2,
-     "@sap.display.format": "UpperCase",
-     "@sap.label": "Division"
     },
     "VarblPurOrdUnitIsActive": {
      "type": "cds.String",
@@ -3773,7 +3767,7 @@
      "length": 4,
      "@sap.display.format": "UpperCase",
      "@sap.label": "Origin Group",
-     "@sap.quickinfo": "Origin Group as Subdivision of Cost Element"
+     "@sap.quickinfo": "Origin Group as SubBaseUnit of Cost Element"
     },
     "CostingOverheadGroup": {
      "type": "cds.String",

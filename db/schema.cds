@@ -24,8 +24,8 @@ entity ProductLocal:managed{
     ProductType: String(4);
     @title : 'Product Group'
     ProductGroup: String(18);
-    @title : 'Division'
-    Division:String(2);
+    @title : 'BaseUnit'
+    BaseUnit:String(3);
     @title : 'Product Decription'
     ProductDescription:String(40);
 }

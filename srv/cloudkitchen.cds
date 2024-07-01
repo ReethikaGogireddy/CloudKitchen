@@ -12,7 +12,7 @@ service CloudKitchen @(requires: 'authenticated-user'){
         Product,
         ProductType,
         ProductGroup,
-        Division,
+        BaseUnit,
         to_Description
     }
 
@@ -97,7 +97,7 @@ annotate CloudKitchen.ProductLocal with @(
             Value: ProductGroup
         },
         {
-            Value: Division
+            Value: BaseUnit
         },
         {
             Value: ProductDescription
@@ -116,7 +116,7 @@ annotate CloudKitchen.ProductLocal with @(
             Value: ProductGroup
         },
         {
-            Value: Division
+            Value: BaseUnit
         },
         {
             Value: ProductDescription
